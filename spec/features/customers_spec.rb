@@ -20,4 +20,20 @@ RSpec.feature 'Customers', type: :feature do
 
     expect(find('h1')).to have_content('New customer')
   end
+
+  scenario 'create a valid customer' do
+    visit(new_customer_path)
+
+    fill_in('Name', with: Faker::Name.name)
+    fill_in('Email', with: Faker::Internet.email)
+    fill_in('Phone', with: Faker::PhoneNumber.phone_number)
+    attach_file('Avatar', "#{Rails.root}/spec/fixtures/avatar.png")
+    choose(option: %w[Yes No].sample)
+
+    expect do
+      click_on('Create customer')
+    end.to change(Customer, :count).by(1)
+
+    expect(page).to have_content('Customer was successfully created')
+  end
 end

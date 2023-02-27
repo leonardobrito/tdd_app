@@ -1,1 +1,21 @@
 <h1>New customer</h1>
+
+<%= form_with(model: @customer) do |form| %>
+ <%= form.label :name %>
+ <%= form.text_field :name %>
+
+ <%= form.label :email %>
+ <%= form.text_field :email %>
+
+ <%= form.label :phone %>
+ <%= form.text_field :phone %>
+
+ <%= form.label :avatar %>
+ <%= form.file_field :avatar %>
+
+ <%= form.label :smoke %>
+ <%= form.radio_button :smoke, 'Yes', value: 'yes' %>
+ <%= form.radio_button :smoke, 'No', value: 'no' %>
+
+ <%= form.submit 'Create customer' %>
+<% end %>
