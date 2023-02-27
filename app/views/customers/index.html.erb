@@ -2,4 +2,26 @@
 
 <h1>Listing customers</h1>
 
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Email</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.name %></td>
+      <td><%= customer.email %></td>
+      <td><%= link_to "Show", customer_path(customer) %></td>
+      <td><%= link_to "Edit", edit_customer_path(customer) %></td>
+      <td><%= link_to "Delete", customer, method: :delete, data: { confirm: 'Are you sure?'} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to "New customer", new_customer_path %>

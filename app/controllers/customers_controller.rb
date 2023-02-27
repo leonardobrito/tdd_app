@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController
-  def index; end
+  def index
+    @customers = Customer.all
+  end
 
   def new
     @customer = Customer.new
@@ -14,6 +16,10 @@ class CustomersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @customer = Customer.find(params[:id])
   end
 
   private
